@@ -1,12 +1,14 @@
-import {initializeApp} from 'firebase'
+import { initializeApp } from 'firebase'
+
+console.log(process.env.VUE_APP_FIREBASE_DB_URL)
 
 const firebaseApp = initializeApp({
-  apiKey: 'AIzaSyBEm7c6vcKGMz55CwWMcC44q60IVkzqcwU',
-  authDomain: 'tapgear-ea17e.firebaseapp.com',
-  databaseURL: 'https://tapgear-ea17e.firebaseio.com',
-  projectId: 'tapgear-ea17e',
-  storageBucket: 'tapgear-ea17e.appspot.com',
-  messagingSenderId: '842846043379'
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.VUE_APP_FIREBASE_DB_URL,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_SENDER_ID
 })
 
 // Get a reference to the database service
