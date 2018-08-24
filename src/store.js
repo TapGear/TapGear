@@ -66,12 +66,14 @@ export default new Vuex.Store({
          })
          .then(() => {
           //  console.log('success update')
-          router.push('/game')
+          console.log('roomName -->',roomName)
+          router.push(`/game/${roomName}`)
          })
          .catch(err => console.log(err))
     },
     waitPlayers ({ commit }, roomName) {
       let self = this
+      console.log('roomName', roomName)
       db.ref(`rooms/${roomName}`).on('value', function(snap) {
         // console.log('loading')
         commit('setLoading')
@@ -80,7 +82,7 @@ export default new Vuex.Store({
         let currUsersLength = Object.keys(currentUsers).length
         // console.log(currUsersLength)
         if (currUsersLength > 1) {
-          router.push('/game')
+          router.push(`/game/${roomName}`)
         }
       })
     }

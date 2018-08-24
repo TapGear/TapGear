@@ -26,7 +26,7 @@ export default {
       player: {},
       opponent: {},
       ended: false,
-      started: true
+      started: true,
     }
   },
   methods: {
@@ -88,8 +88,8 @@ export default {
   },
   created () {
     let self = this
-    localStorage.setItem('username', 'fajar')
-    db.ref('rooms/room1').on('value', function (snapshot) {
+    let params = this.$route.params.id
+    db.ref(`rooms/${params}`).on('value', function (snapshot) {
       let value = snapshot.val()
       console.log(value)
       self.setInitialValue(value)
@@ -97,16 +97,22 @@ export default {
   },
   watch: {
     'player.life': function (val) {
+      let params = this.$route.params.id
       let self= this;
-  console.log("watcher",val)
-  console.log("username", self.username)
-      db.ref('rooms/room1/'+self.username).update(
+      console.log("watcher",val)
+      console.log("username", self.username)
+      db.ref(`rooms/${params}/${self.username}`).update(
         {
           life: val
         }
       )
+    },
+    'opponent.life': function (val) {
+      if (val < 0.5) {
+        alert(this.username + ' wins!')
+        // this.$router.push('/')
+      }
     }
-
   }
 
 }
