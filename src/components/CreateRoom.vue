@@ -14,30 +14,28 @@
 </template>
 
 <script>
-import firebase from "firebase";
-import uuid from "uuid/v1";
-
-const roomRef = firebase.database().ref(`rooms`);
+import { mapActions } from 'vuex'
 
 export default {
   name: "CreateRoom",
   data() {
     return {
-      room_name: ""
     };
   },
+  computed: {
+    room_name: {
+            get () {
+                return this.$store.state.room_name
+            },
+            set (value) {
+                this.$store.commit('setRoomName', value)
+            }
+        }
+  },
   methods: {
-    createRoom() {
-      let room_id = uuid();
-      let self = this;
-      roomRef
-        .child(room_id)
-        .set({ name: self.room_name })
-        .then(() => {
-          self.room_name = "";
-        })
-        .catch(err => console.log(err));
-    }
+    ...mapActions([
+      'createRoom'
+    ])
   }
 };
 </script>

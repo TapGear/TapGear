@@ -16,24 +16,19 @@
 </template>
 
 <script>
-import firebase from "firebase";
-
-const roomRef = firebase.database().ref("rooms");
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: "RoomList",
-  data() {
-    return {
-      rooms: {}
-    };
+  computed: {
+    ...mapState([
+      'rooms'
+    ])
   },
   methods: {
-    fetchRooms() {
-      let self = this;
-      roomRef.on("value", function(snap) {
-        self.rooms = snap.val();
-      });
-    }
+    ...mapActions([
+      'fetchRooms'
+    ])
   },
   created() {
     this.fetchRooms();
