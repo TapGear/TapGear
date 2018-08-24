@@ -23,7 +23,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-      path: '/game',
+      path: '/game/:id',
       name: 'game',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
