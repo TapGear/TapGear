@@ -16,6 +16,10 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
+const roomRef = firebase.database().ref("rooms");
+
 export default {
   name: "RoomList",
   data() {
@@ -25,17 +29,10 @@ export default {
   },
   methods: {
     fetchRooms() {
-      this.rooms = {
-        room1: {
-          name: `Ayo gabung!`
-        },
-        room2: {
-          name: `Mari masuk...`
-        },
-        room3: {
-          name: `Gas gas...`
-        }
-      };
+      let self = this;
+      roomRef.on("value", function(snap) {
+        self.rooms = snap.val();
+      });
     }
   },
   created() {
