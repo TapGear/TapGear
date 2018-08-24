@@ -5,12 +5,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    username: ''
   },
   mutations: {
+    setUsername (state, payload) {
+      state.username = payload
+    }
 
   },
   actions: {
-
+    login (context) {
+      localStorage.setItem('username', this.state.username)
+    }
   }
 })
