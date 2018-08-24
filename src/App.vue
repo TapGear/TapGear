@@ -1,9 +1,12 @@
 <template>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <div id="app">
     <router-view/>
   </div>
 =======
+=======
+>>>>>>> 7731df9dda538559613fe7ac8be539a213f1e0c9
     <v-app id="app">
       <div id="nav">
         <router-link to="/">Home</router-link> |
@@ -12,7 +15,10 @@
       </div>
       <router-view/>
     </v-app>
+<<<<<<< HEAD
 >>>>>>> lobby layout
+=======
+>>>>>>> 7731df9dda538559613fe7ac8be539a213f1e0c9
 </template>
 
 <style>
