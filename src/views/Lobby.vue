@@ -18,6 +18,13 @@
           <CreateRoom />
         </v-card>
       </div>
+      <v-dialog v-model="isLoading" width="500">
+        <v-card color="white">
+          <v-card-text>
+            Waiting for other players...
+          </v-card-text>
+        </v-card>
+      </v-dialog>
     </v-container>
   </v-content>
 </template>
@@ -25,12 +32,21 @@
 <script>
 import RoomList from "@/components/RoomList.vue";
 import CreateRoom from "@/components/CreateRoom.vue";
+import { mapState } from "vuex"
 
 export default {
   name: "Lobby",
   components: {
     RoomList,
     CreateRoom
+  },
+  computed: {
+    ...mapState(['isLoading'])
+  },
+  created () {
+    if(!localStorage.getItem('username')) {
+      this.$router.push('/')
+    }
   }
 };
 </script>
