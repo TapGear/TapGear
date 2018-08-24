@@ -6,7 +6,7 @@
           color="grey" 
           class="white--text">
           <v-card-title primary-title>
-            <div class="headline">{{room.name}}</div>
+            <div class="headline">{{ key }}</div>
           </v-card-title>
           <v-btn dark color="blue" @click="joinRoom(key)">Join</v-btn>
         </v-card>
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchRooms'
+      'fetchRooms', 'joinRoom'
     ])
   },
   created() {

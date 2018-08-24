@@ -31,15 +31,36 @@ export default new Vuex.Store({
         commit('setRoom', snap.val())
       });
     },
-    createRoom() {
-      let room_id = uuid();
+    createRoom({ commit }) {
+      // let room_id = uuid();
+      let roomName = this.state.room_name
+      let username = localStorage.getItem('username')
       db.ref('rooms')
-        .child(room_id)
-        .set({ name: this.state.room_name })
+        .child(roomName + '/' + username)
+        .set({
+          life: 100,
+          isWin: false
+         })
         .then(() => {
           commit('setRoomName', '')
         })
         .catch(err => console.log(err));
+    },
+    joinRoom ({ commit }, key) {
+      let roomName = key
+      let username = localStorage.getItem('username')
+
+      db.ref('rooms')
+        .child(roomName + '/' + username)
+        .update({
+          life: 100,
+          isWin: false
+         })
+         .then(() => {
+          //  console.log('success update')
+          this.$router.push('/game')
+         })
+         .catch(err => console.log(err))
     }
   }
 })
