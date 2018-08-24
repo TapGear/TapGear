@@ -8,7 +8,7 @@
           <v-card-title primary-title>
             <div class="headline">{{room.name}}</div>
           </v-card-title>
-          <v-btn dark color="blue">Join</v-btn>
+          <v-btn dark color="blue" @click="joinRoom(key)">Join</v-btn>
         </v-card>
       </v-flex>
     </v-layout>
